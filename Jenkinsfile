@@ -7,7 +7,7 @@ pipeline {
       steps {
         echo "Hello ${MY_NAME}!"
         echo "User Name: ${TEST_USER_USR}"
-        echo "Password: ${TEST_USER_PWD}"
+        echo "Password: ${TEST_USER_PSW}"
         sh 'java -version'
       }
     }
@@ -15,6 +15,6 @@ pipeline {
   }
   environment {
     MY_NAME = 'Mary Magdalene'
-    TEST_USER = credentials('a113bed98-0426-43bd-967a-d3a11f10084a')
+    TEST_USER = credentials('test-user')
   }
 }
