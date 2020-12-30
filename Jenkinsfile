@@ -12,6 +12,15 @@ pipeline {
       }
     }
 
+    stage('deploy') {
+      input {
+        message 'Shall we continue?'
+      }
+      steps {
+        echo 'Continuing with the deployment..'
+      }
+    }
+
   }
   environment {
     MY_NAME = 'Mary Magdalene'
