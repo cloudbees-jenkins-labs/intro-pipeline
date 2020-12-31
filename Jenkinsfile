@@ -62,7 +62,6 @@ pipeline {
             body: "Hi User,<br>There has been a <b>Build Failure</b>. Please, find the details below:<br><br><b>Project:</b> ${env.JOB_NAME} <br><b>Build Number:</b> ${env.BUILD_NUMBER} <br><b>Build URL:</b> ${env.BUILD_URL}<br><br>Thanks,<br>Jenkins Admin", 
             cc: '', 
             charset: 'UTF-8', 
-            from: '', 
             mimeType: 'text/html', 
             replyTo: 'noreply@jenkins.com', 
             subject: "Failed Pipeline: ${currentBuild.fullDisplayName} ", 
