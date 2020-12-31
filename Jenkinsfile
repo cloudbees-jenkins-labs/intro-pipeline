@@ -59,7 +59,7 @@ pipeline {
     failure{
       //the build had a fatal error.
       mail  bcc: '', 
-            body: "<b>Failure</b><br>\n<br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}", 
+            body: "Hi User,<br>There has been a <b>Build Failure</b>. Please, find the details below:<br><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Build URL: ${env.BUILD_URL}<br>Thanks,<br>Jenkins Admin", 
             cc: '', 
             charset: 'UTF-8', 
             from: '', 
