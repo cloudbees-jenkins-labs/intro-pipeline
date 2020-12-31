@@ -9,8 +9,6 @@ pipeline {
     stage('say-hello') {
       steps {
         echo "Hello ${params.Name}!"
-        echo "User Name: ${TEST_USER_USR}"
-        echo "Password: ${TEST_USER_PSW}"
         sh 'java -version'
       }
     }
@@ -35,7 +33,6 @@ pipeline {
   // Environment Variables
   environment {
     MY_NAME = 'Mary Magdalene'
-    TEST_USER = credentials('ecdbed9c3dc8b80415fa15f0caa055e44bc973ce')
   }
 
   parameters {
