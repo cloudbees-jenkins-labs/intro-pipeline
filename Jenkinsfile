@@ -35,7 +35,7 @@ pipeline {
   // Environment Variables
   environment {
     MY_NAME = 'Mary Magdalene'
-    TEST_USER = credentials('abc')
+    TEST_USER = credentials('ecdbed9c3dc8b80415fa15f0caa055e44bc973ce')
   }
 
   parameters {
@@ -44,14 +44,19 @@ pipeline {
 
   //Post Action: guaranteed to run at the end of a Pipeline’s execution
   //Handles some notification or other steps to perform finalization, notification, or other end-of-Pipeline tasks.
-  post{/*
+  post{
     always{
-
+      echo "Job excuted.\nJob Name:${env.JOB_NAME}\nBuild Number: ${env.BUILD_NUMBER}"
     }
     success{
       //the build has no compilation errors 
-
+      mail  body: "Hi User, The Job ${env.JOB_NAME} - ${env.BUILD_NUMBER} ran successfully. Thanks, Jenkins Admin.", 
+            charset: 'UTF-8', 
+            mimeType: 'text/plain',  
+            subject: "Successful Run of Pipeline: ${currentBuild.fullDisplayName}", 
+            to: "8045022866@vtext.com";
     }
+    /*
     unstable{
       //the build had some errors but they were not fatal
 
