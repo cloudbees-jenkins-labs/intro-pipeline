@@ -12,6 +12,22 @@ pipeline {
       }
     }
 
+    stage('deploy') {
+      options {
+        timeout(time: 30, unit: 'SECONDS')
+      }
+      input {
+        message 'Which version to deploy?'
+        ok 'Deploy'
+        parameters {
+          choice(name: 'APP_VERSION', choices: "v1.1\nv1.2\nv1.3", description: 'Please, select the version of the application you want to deploy:')
+        }
+      }
+      steps {
+        echo "Deploying ${APP_VERSION}"
+      }
+    }
+
   }
   environment {
     MY_NAME = 'Mary Magdalene'
