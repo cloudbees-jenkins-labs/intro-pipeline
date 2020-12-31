@@ -14,10 +14,14 @@ pipeline {
 
     stage('deploy') {
       options {
-        timeout(time: 10, unit: 'SECONDS')
+        timeout(time: 30, unit: 'SECONDS')
       }
       input {
-        message 'Shall we continue?'
+        message 'Which version to deploy?'
+        ok 'Deploy'
+        parameters {
+          choice(name: 'APP_VERSION', choices: "v1.1\nv1.2\nv1.3", description: 'Please, select the version of the application you want to deploy:')
+        }
       }
       steps {
         echo 'Continuing with the deployment..'
