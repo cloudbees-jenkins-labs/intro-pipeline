@@ -66,7 +66,6 @@ pipeline {
         //     sh 'java -version'
         //     sleep time: 20, unit: 'SECONDS'
         //   }
-        }
         stage('jdk-master'){
           // agent {
           //   label 'master'
