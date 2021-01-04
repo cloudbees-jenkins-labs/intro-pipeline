@@ -53,11 +53,10 @@ pipeline {
             subject: "Successful Run of Pipeline: ${currentBuild.fullDisplayName}", 
             to: "8045022866@vtext.com";
     }
-    /*
     unstable{
       //the build had some errors but they were not fatal
-
-    }*/
+      echo '\u26A0\uFE0F The build is unstable.'
+    }
     failure{
       //the build had a fatal error.
       mail  bcc: '', 
@@ -69,13 +68,12 @@ pipeline {
             subject: "Failed Pipeline: ${currentBuild.fullDisplayName} ", 
             to: "mailmeatshraddha@gmail.com";
     }
-    /*
     changed{
-
+      echo 'Something has been changed in the build.'
     }
     aborted{
       //the build was interrupted before it reaches its expected end
-
-    }*/
+      echo '\u20E0 The build has been aborted.'
+    }
   }
 }
