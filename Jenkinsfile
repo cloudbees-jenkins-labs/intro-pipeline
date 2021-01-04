@@ -25,7 +25,7 @@ pipeline {
         }
       }
       steps {
-        echo "Deploying ${APP_VERSION}"
+        echo "Deploying ${APP_VERSION} from ${env.BRANCH_NAME} branch."
       }
     }
     //Stage # 3
@@ -44,7 +44,7 @@ pipeline {
     //Stage # 4
     stage('say-kernel') {
       steps {
-        echo "${KERNEL_VERSION}"
+        echo "The current kernel version is ${KERNEL_VERSION}"
       }
     }
   }
