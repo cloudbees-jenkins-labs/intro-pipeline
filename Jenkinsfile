@@ -28,6 +28,7 @@ pipeline {
         echo "Deploying ${APP_VERSION}"
       }
     }
+    //Stage # 3
     stage('get-kernel') {
       steps {
         script {
@@ -40,6 +41,7 @@ pipeline {
         }
       }
     }
+    //Stage # 4
     stage('say-kernel') {
       steps {
         echo "${KERNEL_VERSION}"
