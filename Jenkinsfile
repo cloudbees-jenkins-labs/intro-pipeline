@@ -51,21 +51,21 @@ pipeline {
     stage('Testing') {
       failFast true
       parallel {
-        // stage('jdk-10'){
-        //   agent {
-        //     docker { image 'openjdk:10.0.1-10-jdk-slim-sid' }
-        //   }
-        //   steps {
-        //     sh 'java -version'
-        //     sleep time: 20, unit: 'SECONDS'
-        //   }
-        // }
         stage('jdk-10'){
+          agent {
+            docker { image 'openjdk:10.0.1-10-jdk-slim-sid' }
+          }
           steps {
-            sh 'docker run -it --rm openjdk:10.0.1-10-jdk-slim-sid java -version'
             sh 'java -version'
             sleep time: 20, unit: 'SECONDS'
           }
+        }
+        // stage('jdk-10'){
+        //   steps {
+        //     sh 'docker run -it --rm openjdk:10.0.1-10-jdk-slim-sid java -version'
+        //     sh 'java -version'
+        //     sleep time: 20, unit: 'SECONDS'
+        //   }
         }
         stage('jdk-master'){
           // agent {
