@@ -47,6 +47,29 @@ pipeline {
         echo "The current kernel version is ${KERNEL_VERSION}"
       }
     }
+
+    stage('Testing') {
+      failFast true
+      parallel {
+        stage('jdk-10'){
+          agent {
+            docker { image 'openjdk:10.0.1-10-jdk-slim-sid' }
+          }
+          steps {
+            sh 'java -version'
+            sleep time: 20, unit: 'SECONDS'
+          }
+        }
+        stage('jdk-master'){
+          // agent {
+          //   label 'master'
+          // }
+          steps {
+            sh 'java -version'
+            sleep time: 10, unit: 'SECONDS'
+          }
+        }
+      }
   }
 
   // Environment Variables
