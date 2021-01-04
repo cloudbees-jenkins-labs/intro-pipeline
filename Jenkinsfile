@@ -28,6 +28,23 @@ pipeline {
         echo "Deploying ${APP_VERSION}"
       }
     }
+    stage('get-kernel') {
+      steps {
+        script {
+          try {
+            KERNEL_VERSION = sh (script: "uname -r", returnStdout: true)
+          } catch(err) {
+            echo "CAUGHT ERROR: ${err}"
+            throw err
+          }
+        }
+      }
+    }
+    stage('say-kernel') {
+      steps {
+        echo "${KERNEL_VERSION}"
+      }
+    }
   }
 
   // Environment Variables
@@ -52,6 +69,7 @@ pipeline {
             mimeType: 'text/plain',  
             subject: "Successful Run of Pipeline: ${currentBuild.fullDisplayName}", 
             to: "8045022866@vtext.com";
+      echo 'The text message has been sent to the specified user.'
     }
     unstable{
       //the build had some errors but they were not fatal
@@ -67,8 +85,10 @@ pipeline {
             replyTo: 'noreply@jenkins.com', 
             subject: "Failed Pipeline: ${currentBuild.fullDisplayName} ", 
             to: "mailmeatshraddha@gmail.com";
+      echo 'The email has been sent to the specified user.'
     }
     changed{
+      //only run the steps in post if the current Pipeline’s or stage’s run has a different completion status from its previous run.
       echo 'Something has been changed in the build.'
     }
     aborted{
