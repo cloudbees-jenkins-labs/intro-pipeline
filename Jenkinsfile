@@ -12,6 +12,13 @@ pipeline {
         sh 'java -version'
       }
     }
+    //Checkpoint # 1
+    stage('checkpoint-1') {
+      agent none
+      steps{
+        checkpoint  'say-hello stage completed successfully. Checkpoint # 1..'
+      }
+    }
     //Stage # 2
     stage('deploy') {
       options {
@@ -47,7 +54,14 @@ pipeline {
         echo "The current kernel version is ${KERNEL_VERSION}"
       }
     }
-
+    //Checkpoint # 2
+    stage('checkpoint-2') {
+      agent none
+      steps{
+        checkpoint 'all the stages completed successfully. We have to start the testing stage. Checkpoint # 2..' 
+      }
+    }
+    //Stage # 5 
     stage('Testing') {
       failFast true
       parallel {
