@@ -8,6 +8,7 @@ pipeline {
     //Stage # 1
     stage('say-hello') {
       steps {
+        echo "JENKINS_HOME - ${env.JENKINS_HOME}"
         echo "Hello ${params.Name}!"
         sh 'java -version'
       }
