@@ -55,8 +55,14 @@ pipeline {
         echo "The current kernel version is ${KERNEL_VERSION}"
       }
     }
-    //Stage # 5 
-    stage('Testing') {
+    //Stage # 7
+    stage('create-a-file') {
+      steps{
+        sh 'echo "artifact file">generatedFile.txt '
+      }
+    }
+    //Stage # 6 
+    stage('testing') {
       failFast true
       parallel {
         stage('jdk-10'){
@@ -89,6 +95,7 @@ pipeline {
   post{
     always{
       echo "Job excuted.\nJob Name:${env.JOB_NAME}\nBuild Number: ${env.BUILD_NUMBER}"
+      archiveArtifacts artifacts: 'generatedFile.txt', onlyIfSuccessful: true
     }
     success{
       //the build has no compilation errors 
