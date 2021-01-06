@@ -95,6 +95,7 @@ pipeline {
   post{
     always{
       echo "Job excuted.\nJob Name:${env.JOB_NAME}\nBuild Number: ${env.BUILD_NUMBER}"
+      //Find the archived artifact in $JENKINS_HOME/yourjobname/branches/branchname/builds/yourbuildernumer/archive
       archiveArtifacts artifacts: 'generatedFile.txt', onlyIfSuccessful: true
     }
     success{
