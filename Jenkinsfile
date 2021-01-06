@@ -55,13 +55,13 @@ pipeline {
         echo "The current kernel version is ${KERNEL_VERSION}"
       }
     }
-    //Stage # 7
+    //Stage # 6
     stage('create-a-file') {
       steps{
         sh 'echo "artifact file">generatedFile.txt '
       }
     }
-    //Stage # 6 
+    //Stage # 7 
     stage('testing') {
       failFast true
       parallel {
